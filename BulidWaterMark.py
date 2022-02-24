@@ -110,18 +110,20 @@ class Thread(QThread):
         self.out_dir_path =''
         self.key_one = 1
         self.key_two = 2
-
+        self.stop = False
     def run(self) -> None:
         self.sinOut.emit(0, '已启动切勿重复点击！')
         for pic_path in self.pic_path_list:
             for abpath in self.ab_path_list:
+                if self.stop:
+                    break
                 abname = os.path.basename(abpath).split('.')[0]
                 if not os.path.exists(self.out_dir_path + '/' + abname):
                     os.mkdir(self.out_dir_path + '/' + abname)
 
                 bwm1 = BulidWaterMark(password_wm=self.key_one, password_img=self.key_two)
                 try:
-                    start =time.time()
+                    start = time.time()
                     bwm1.read_img(pic_path)
                     bwm1.read_wm(abpath)
                     bwm1.embed('{}/{}/{}'.format(self.out_dir_path, abname, os.path.basename(pic_path)))

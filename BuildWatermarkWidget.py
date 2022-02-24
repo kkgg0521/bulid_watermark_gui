@@ -37,14 +37,15 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.Thread = Thread(self)
         self.Thread.sinOut.connect(self.showinfo)
         self.pushButton_start.clicked.connect(self.start_bulid)
-
+        self.pushButton_stop.clicked.connect(self.stop_bulid)
         self.allpics = None
         self.allsys = None
     def showinfo(self, process , info):
-
         self.textBrowser.append(info)
 
 
+    def stop_bulid(self):
+        self.Thread.stop = True
     def start_bulid(self):
         if self.allsys is not None and self.allpics is not None:
             self.Thread.pic_path_list = self.allpics
@@ -52,11 +53,8 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
             self.Thread.out_dir_path = self.lineEdit_outpath.text()
             self.Thread.key_one = self.spinBox_password1.value()
             self.Thread.key_two = self.spinBox_password2.value()
+            self.Thread.stop = False
             self.Thread.start()
-
-
-
-
 
     def choose_oris_path(self):
         path = QFileDialog.getExistingDirectory(self, "选择需要打标的图片所在文件夹！", "./")
