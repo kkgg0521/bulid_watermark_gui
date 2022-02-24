@@ -1,1 +1,149 @@
+QToolButton{
+	padding-bottom:0px;
+	border: 0px;
+	width: 45px;
+	icon-size: 32px;
+}
 
+QToolButton:hover,QToolButton:checked{
+	background:rgb(227, 236, 250);
+}
+
+QToolButton::menu-button {
+	subcontrol-origin:margin;
+	subcontrol-position: bottom center;
+	height:20px;
+	width: 100;
+ }
+ 
+QPushButton{
+	border: 0px;
+	hight: 80px;
+	width: 50px;
+}
+
+QPushButton:hover{
+	background:rgb(227, 236, 250);
+}
+
+QPushButton:checked{
+    background-color: rgb(137, 208, 255);
+}
+
+QListView{
+    border : 0px;
+}
+
+QSplitter::handle {
+    background-color:rgb(227, 236, 250);
+}
+
+QListWidget{
+    border : 0px;
+}
+
+QTreeWidget{
+    border : 0px;
+}
+
+QTableWidget, QTableView{
+    border : 0px;
+}
+
+QDialog{
+    background-color:rgb(255, 255, 255);
+}
+
+
+QTabBar::tab {
+	height: 35px;
+	min-width: 75px;
+	margin-right: 3px;
+	margin-bottom: -2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	background:rgb(227, 236, 250);
+}
+
+QTabWidget::pane {
+    border: 1px solid rgb(200, 200, 200);
+    top: -1px;
+}
+
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	/*background:rgb(189, 186, 186)*/
+	border:1px solid rgb(200, 200, 200);
+	border-bottom-color: none;
+	background:rgb(255, 255, 255);
+}
+
+
+QPushButton {
+     background-color: rgb(227, 236, 250);
+     border: none;
+     color: black;
+     border-radius:3px;
+     font-size:12px;
+}
+
+QPushButton:hover{
+     border: 1px solid #1f4f89;
+     border-color: #54a0ec;
+}
+
+QPushButton:checked:disabled{
+   color: white;
+}
+
+QPushButton:disabled{
+    color: gray;
+}
+
+QPushButton:pressed {
+    border-style: inset;
+}
+
+QPushButton:checked {
+     color: white;
+     background-color: #1f4f89;
+     border-color: none;
+}
+
+QTreeView{
+    border : none;
+    show-decoration-selected: 1;
+    font: 14px;
+}
+
+QHeaderView::section:horizontal{
+	height:20px;
+	color:white;
+	background:rgb(150, 184, 237);
+	border-left:0px solid gray;
+	border-right:1px solid gray;
+	border-top:0px solid gray;
+	border-bottom:0px solid gray;
+	font: 13px;
+}
+
+/*QTreeView::item:selected:!active, QTreeView::branch:selected:!active {
+       background-color: rgb(240, 240, 240);
+}*/
+
+QTreeView::item:selected{
+       background-color: rgb(0, 120, 215);
+}
+
+/*QTreeView::item:hover, QTreeView::branch:hover {
+       background-color: transparent;
+}*/
+
+QTreeView::item{height: 35px;}
+
+/* QTreeView::branch:has-children:open{image: url(:/png/close.png);}
+QTreeView::branch:has-children:closed{image: url(:/png/open.png);} */
+
+QSplashScreen{
+    font-size: 16px;
+}
