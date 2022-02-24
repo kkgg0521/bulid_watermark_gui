@@ -22,6 +22,7 @@ class Ui_build_watermark(object):
         font.setPointSize(13)
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setOpenExternalLinks(True)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.tabWidget = QtWidgets.QTabWidget(build_watermark)
@@ -142,7 +143,7 @@ class Ui_build_watermark(object):
     def retranslateUi(self, build_watermark):
         _translate = QtCore.QCoreApplication.translate
         build_watermark.setWindowTitle(_translate("build_watermark", "build_watermark"))
-        self.label.setText(_translate("build_watermark", "批量图片盲水印 提取无需原图"))
+        self.label.setText(_translate("build_watermark", "<a href=\"https://github.com/kkgg0521/bulid_watermark_gui\">批量图片盲水印 提取无需原图(点击进入项目地址)</a>"))
         self.groupBox_2.setTitle(_translate("build_watermark", "设置参数"))
         self.label_5.setText(_translate("build_watermark", "密钥："))
         self.groupBox_3.setTitle(_translate("build_watermark", "操作按钮"))
@@ -155,5 +156,5 @@ class Ui_build_watermark(object):
         self.label_2.setText(_translate("build_watermark", "原图文件夹:"))
         self.label_3.setText(_translate("build_watermark", "水印文件夹:"))
         self.label_4.setText(_translate("build_watermark", "出图文件夹:"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("build_watermark", "Tab 1"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("build_watermark", "Tab 2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("build_watermark", "嵌入盲水印"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("build_watermark", "提取盲水印"))

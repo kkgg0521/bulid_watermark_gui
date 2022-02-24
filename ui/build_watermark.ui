@@ -22,10 +22,13 @@
       </font>
      </property>
      <property name="text">
-      <string>批量图片盲水印 提取无需原图</string>
+      <string>&lt;a href=&quot;https://github.com/kkgg0521/bulid_watermark_gui&quot;&gt;批量图片盲水印 提取无需原图(点击进入项目地址)&lt;/a&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -36,7 +39,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Tab 1</string>
+       <string>嵌入盲水印</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0,0,0" columnstretch="1,0,0,0">
        <item row="1" column="0">
@@ -225,7 +228,7 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Tab 2</string>
+       <string>提取盲水印</string>
       </attribute>
      </widget>
     </widget>
