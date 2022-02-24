@@ -38,19 +38,21 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.Thread.sinOut.connect(self.showinfo)
         self.pushButton_start.clicked.connect(self.start_bulid)
 
-
+        self.allpics = None
+        self.allsys = None
     def showinfo(self, process , info):
 
         self.textBrowser.append(info)
 
 
     def start_bulid(self):
-        self.Thread.pic_path_list = self.allpics
-        self.Thread.ab_path_list = self.allsys
-        self.Thread.out_dir_path = self.lineEdit_outpath.text()
-        self.Thread.key_one = self.spinBox_password1.value()
-        self.Thread.key_two = self.spinBox_password2.value()
-        self.Thread.start()
+        if self.allsys is not None and self.allpics is not None:
+            self.Thread.pic_path_list = self.allpics
+            self.Thread.ab_path_list = self.allsys
+            self.Thread.out_dir_path = self.lineEdit_outpath.text()
+            self.Thread.key_one = self.spinBox_password1.value()
+            self.Thread.key_two = self.spinBox_password2.value()
+            self.Thread.start()
 
 
 
