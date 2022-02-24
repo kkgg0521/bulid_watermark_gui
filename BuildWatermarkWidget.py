@@ -7,10 +7,10 @@
 import os
 
 from PyQt5.QtCore import QSize, pyqtSignal, QThread
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QWidget, QFileDialog
 
-from BulidWaterMark import Thread
+from BulidWaterMark import Thread, BulidWaterMark
 from func import readallpics
 from ui.build_watermark_ui import Ui_build_watermark
 
@@ -23,6 +23,7 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.toolButton_oripath.setIcon(choose_dir_icon)
         self.toolButton_sypath.setIcon(choose_dir_icon)
         self.toolButton_outpath.setIcon(choose_dir_icon)
+        self.toolButton_tq.setIcon(choose_dir_icon)
         start_icon = QIcon('static/icon/start.png')
         self.pushButton_start.setIcon(start_icon)
         stop_icon = QIcon('static/icon/stop.png')
@@ -32,6 +33,7 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.toolButton_oripath.clicked.connect(self.choose_oris_path)
         self.toolButton_sypath.clicked.connect(self.choose_sys_path)
         self.toolButton_outpath.clicked.connect(self.choose_out_path)
+        self.toolButton_tq.clicked.connect(self.choose_out_pic)
 
 
         self.Thread = Thread(self)
@@ -42,6 +44,13 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.allsys = None
     def showinfo(self, process , info):
         self.textBrowser.append(info)
+
+    def choose_out_pic(self):
+        path = QFileDialog.getOpenFileName(self, "选择图片文件", '*')[0]
+        if path != '':
+            bwm1 = BulidWaterMark(password_wm=self.spinBox_password1_2.value(), password_img=self.spinBox_password2_2.value())
+            bwm1.extract(path, (self.spinBox_shapew.value(),self.spinBox_shapeh.value()), './out.png')
+            self.label_outwm.setPixmap(QPixmap('./out.png'))
 
 
     def stop_bulid(self):
