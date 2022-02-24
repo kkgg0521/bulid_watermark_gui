@@ -1,5 +1,6 @@
 # bulid_watermark_gui
 Blind&amp;Invisible Watermark （图片盲水印，提取水印无须原图！) 增加图形界面
+软件下载地址（无需环境解压缩点击Bwm.exe）：https://download.csdn.net/download/CxzKkgg/82180778
 # how to use
 pip install -r requirements.txt
 运行main.py
