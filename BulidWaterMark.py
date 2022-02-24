@@ -5,6 +5,7 @@
 @File ：BulidWaterMark.py
 """
 import os
+import time
 
 import cv2
 import numpy as np
@@ -101,7 +102,7 @@ class BulidWaterMark:
 
 
 class Thread(QThread):
-    sinOut = pyqtSignal(str, str, str)
+    sinOut = pyqtSignal(int, str)
     def __init__(self, parent=None):
         super(Thread, self).__init__(parent)
         self.pic_path_list = []
@@ -113,9 +114,23 @@ class Thread(QThread):
     def run(self) -> None:
         for pic_path in self.pic_path_list:
             for abpath in self.ab_path_list:
-                bwm1 = BulidWaterMark(password_wm=self.key_one, password_img=self.key_two)
-                bwm1.read_img(pic_path)
-                bwm1.read_wm(abpath)
-                bwm1.embed('{}/{}'.format(self.out_dir_path, os.path.basename(pic_path)))
+                abname = os.path.basename(abpath).split('.')[0]
+                if not os.path.exists(self.out_dir_path + '/' + abname):
+                    os.mkdir(self.out_dir_path + '/' + abname)
 
-        self.sinOut.emit('所有图片', '所有水印', '全部结束')
+                bwm1 = BulidWaterMark(password_wm=self.key_one, password_img=self.key_two)
+                try:
+                    start =time.time()
+                    bwm1.read_img(pic_path)
+                    bwm1.read_wm(abpath)
+                    bwm1.embed('{}/{}/{}'.format(self.out_dir_path, abname, os.path.basename(pic_path)))
+                    end = time.time()
+                    info = '{}--{}--{}'.format(os.path.basename(pic_path),os.path.basename(abpath),str(end-start) )
+                except AssertionError as e:
+                    info = e.args
+                except IOError as e:
+                    info = e.args
+
+                self.sinOut.emit(100, str(info))
+
+        self.sinOut.emit(100, '全部结束')

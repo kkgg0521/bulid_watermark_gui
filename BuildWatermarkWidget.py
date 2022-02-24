@@ -4,14 +4,17 @@
 @Auth ： 吕伟康
 @File ：BuildWatermarkWidget.py
 """
-from PyQt5.QtCore import QSize
+import os
+
+from PyQt5.QtCore import QSize, pyqtSignal, QThread
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QFileDialog
 
+from BulidWaterMark import Thread
 from func import readallpics
 from ui.build_watermark_ui import Ui_build_watermark
 
-# import blind_watermark
+
 class BuildWatermarkWidget(QWidget, Ui_build_watermark):
     def __init__(self,parent = None):
         super(BuildWatermarkWidget, self).__init__(parent)
@@ -29,6 +32,30 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.toolButton_oripath.clicked.connect(self.choose_oris_path)
         self.toolButton_sypath.clicked.connect(self.choose_sys_path)
         self.toolButton_outpath.clicked.connect(self.choose_out_path)
+
+
+        self.Thread = Thread(self)
+        self.Thread.sinOut.connect(self.showinfo)
+        self.pushButton_start.clicked.connect(self.start_bulid)
+
+
+    def showinfo(self, process , info):
+
+        self.textBrowser.append(info)
+
+
+    def start_bulid(self):
+        self.Thread.pic_path_list = self.allpics
+        self.Thread.ab_path_list = self.allsys
+        self.Thread.out_dir_path = self.lineEdit_outpath.text()
+        self.Thread.key_one = self.spinBox_password1.value()
+        self.Thread.key_two = self.spinBox_password2.value()
+        self.Thread.start()
+
+
+
+
+
     def choose_oris_path(self):
         path = QFileDialog.getExistingDirectory(self, "选择需要打标的图片所在文件夹！", "./")
         if not path == '':
@@ -47,6 +74,5 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         path = QFileDialog.getExistingDirectory(self, "选择出图文件夹！", "./")
         if not path == '':
             self.lineEdit_outpath.setText(path)
-
 
 
