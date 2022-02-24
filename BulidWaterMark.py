@@ -112,6 +112,7 @@ class Thread(QThread):
         self.key_two = 2
 
     def run(self) -> None:
+        self.sinOut.emit(0, '已启动切勿重复点击！')
         for pic_path in self.pic_path_list:
             for abpath in self.ab_path_list:
                 abname = os.path.basename(abpath).split('.')[0]
