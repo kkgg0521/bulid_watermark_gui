@@ -1,0 +1,6 @@
+blind-watermark==0.3.1
+numpy==1.21.5
+opencv-python==4.5.5.62
+PyQt5==5.15.6
+PyWavelets==1.2.0
+
