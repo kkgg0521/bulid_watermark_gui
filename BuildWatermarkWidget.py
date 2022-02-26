@@ -9,6 +9,7 @@ import os
 from PyQt5.QtCore import QSize, pyqtSignal, QThread
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QWidget, QFileDialog
+from blind_watermark.recover import recover_crop2, recover_crop1
 
 from BulidWaterMark import Thread, BulidWaterMark
 from func import readallpics
@@ -23,9 +24,13 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.toolButton_oripath.setIcon(choose_dir_icon)
         self.toolButton_sypath.setIcon(choose_dir_icon)
         self.toolButton_outpath.setIcon(choose_dir_icon)
+        self.toolButton_rec.setIcon(choose_dir_icon)
+        self.toolButton_rec_2.setIcon(choose_dir_icon)
+
         self.toolButton_tq.setIcon(choose_dir_icon)
         start_icon = QIcon('static/icon/start.png')
         self.pushButton_start.setIcon(start_icon)
+        self.pushButton_rec.setIcon(start_icon)
         stop_icon = QIcon('static/icon/stop.png')
         self.pushButton_stop.setIcon(stop_icon)
 
@@ -35,6 +40,10 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.toolButton_outpath.clicked.connect(self.choose_out_path)
         self.toolButton_tq.clicked.connect(self.choose_out_pic)
 
+        self.toolButton_rec.clicked.connect(self.choose_rec_ori)
+        self.toolButton_rec_2.clicked.connect(self.choose_rec_ori_2)
+        self.pushButton_rec.clicked.connect(self.rec)
+
 
         self.Thread = Thread(self)
         self.Thread.sinOut.connect(self.showinfo)
@@ -42,12 +51,33 @@ class BuildWatermarkWidget(QWidget, Ui_build_watermark):
         self.pushButton_stop.clicked.connect(self.stop_bulid)
         self.allpics = None
         self.allsys = None
+
+    def choose_rec_ori(self):
+        path = QFileDialog.getOpenFileName(self, "选择图片文件", '*')[0]
+        if path != '':
+            self.lineEdit_rec.setText(path)
+
+    def choose_rec_ori_2(self):
+        path = QFileDialog.getOpenFileName(self, "选择图片文件", '*')[0]
+        if path != '':
+            self.lineEdit_rec_2.setText(path)
+
+    def rec(self):
+        if self.checkBox_rec.isChecked():
+            recover_crop2(self.lineEdit_rec.text(),self.lineEdit_rec_2.text(), 'outpic.png')
+        else:
+            recover_crop1(self.lineEdit_rec.text(),self.lineEdit_rec_2.text(), 'outpic.png')
+
+
+
+
     def showinfo(self, process , info):
         self.textBrowser.append(info)
 
     def choose_out_pic(self):
         path = QFileDialog.getOpenFileName(self, "选择图片文件", '*')[0]
         if path != '':
+            self.lineEdit_tq.setText(path)
             bwm1 = BulidWaterMark(password_wm=self.spinBox_password1_2.value(), password_img=self.spinBox_password2_2.value())
             bwm1.extract(path, (self.spinBox_shapew.value(),self.spinBox_shapeh.value()), './out.png')
             self.label_outwm.setPixmap(QPixmap('./out.png'))
