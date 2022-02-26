@@ -22,7 +22,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;a href=&quot;https://github.com/kkgg0521/bulid_watermark_gui&quot;&gt;批量图片盲水印 提取无需原图(点击进入项目地址)&lt;/a&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/kkgg0521/bulid_watermark_gui&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;批量图片盲水印(点击进入项目地址)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -233,8 +233,8 @@
       <widget class="QLabel" name="label_outwm">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>180</y>
+         <x>270</x>
+         <y>270</y>
          <width>151</width>
          <height>161</height>
         </rect>
@@ -246,8 +246,8 @@
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>400</x>
-         <y>170</y>
+         <x>450</x>
+         <y>300</y>
          <width>251</width>
          <height>131</height>
         </rect>
@@ -267,7 +267,7 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -372,6 +372,77 @@
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>691</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>图像复原（截图需要先复原）</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_rec">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>选择原图文件：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="toolButton_rec">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="checkBox_rec">
+          <property name="text">
+           <string>暴力检索(选择和不选择是两种不同的回恢复方式)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>选择破坏文件：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_rec_2">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QToolButton" name="toolButton_rec_2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton_rec">
+          <property name="text">
+           <string>选择完文件点击此处</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
